@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table cellpadding="10">
+    <thead>
+    <tr>
+        <th>
+            Введите сумму:
+        </th>
+        <th>
+            KZT (tenge):
+        </th>
+        <th>
+            USD (usd):
+        </th>
+        <th>
+            EUR (eur):
+        </th>
+        <th>
+            RUB (rub):
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <input type="text" id="cash">
+            <select id="valuta">
+                <option value="USD">USD</option>
+                <option value="KZT">KZT</option>
+                <option value="EUR">EUR</option>
+                <option value="RUB">RUB</option>
+            </select>
+        </td>
+        <td>
+            <input type="text" id="tenge" readonly>
+        </td>
+        <td>
+            <input type="text" id="dollar" readonly>
+        </td>
+        <td>
+            <input type="text" id="euro" readonly>
+        </td>
+        <td>
+            <input type="text" id="rubl" readonly>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    function changeValuta() {
+        let tengeValue
+        let euroValue
+        let usdValue
+        let rblValue
+        if (document.getElementById('valuta').value === 'USD') {
+            tengeValue = cash.value * 475
+            euroValue = (cash.value * 0.92).toFixed(0)
+            rblValue = (cash.value / 0.012).toFixed(0)
+            usdValue = "-"
+        } else if (document.getElementById('valuta').value === 'EUR') {
+            tengeValue = cash.value * 517
+            usdValue = (cash.value * 1.09).toFixed(0)
+            rblValue = (cash.value / 0.011).toFixed(0)
+            euroValue = "-"
+        } else if (document.getElementById('valuta').value === 'KZT') {
+            usdValue = (cash.value / 475).toFixed(0)
+            euroValue = (cash.value / 517).toFixed(0)
+            rblValue = (cash.value / 5.51).toFixed(0)
+            tengeValue = "-"
+        } else {
+            usdValue = (cash.value * 0.012).toFixed(0)
+            euroValue = (cash.value * 0.011).toFixed(0)
+            tengeValue = (cash.value * 5.51).toFixed(0)
+            rblValue = "-"
+        }
+        tenge.value = tengeValue
+        dollar.value = usdValue
+        euro.value = euroValue
+        rubl.value = rblValue
+    }
+
+    document.getElementById('valuta').addEventListener('change', changeValuta)
+</script>
+
+</body>
+</html>
